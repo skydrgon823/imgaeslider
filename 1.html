@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./1.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="carousel">
+        <div class="imgcontent">
+          <img class="item" src="./1.jpg" />
+          <img src="./2.jpg" class="item" />
+          <img class="item" src="./3.jpg" />
+          <img src="./4.jpg" class="item" />
+          <img class="item" src="./1.jpg" />
+          <img src="./2.jpg" class="item" />
+          <img class="item" src="./3.jpg" />
+          <img src="./4.jpg" class="item" />
+          <img class="item" src="./1.jpg" />
+          <img src="./2.jpg" class="item" />
+          <img class="item" src="./3.jpg" />
+          <img src="./4.jpg" class="item" />
+          <img class="item" src="./1.jpg" />
+          <img src="./2.jpg" class="item" />
+          <img class="item" src="./3.jpg" />
+          <img src="./4.jpg" class="item" />
+        </div>
+      </div>
+      <div class="pseduo-track"></div>
+      <button class="prev">
+        <i class='fas fa-angle-right' style="font-size:24px; color:white;"></i>
+        <!-- <i style='font-size:24px' class='fas'>&#xf104;</i> -->
+      </button>
+      <button class="next">
+        <i class='fas fa-angle-right' style='font-size:24px; color:white;'></i>
+        <!-- <i style='font-size:24px' class='fas'>&#xf105;</i> -->
+      </button>
+    </div>
+    <script>
+      const gap = 16;
+
+      const carousel = document.getElementsByClassName("carousel")[0],
+        content = document.getElementsByClassName("content")[0],
+        next = document.getElementsByClassName("next")[0],
+        prev = document.getElementsByClassName("prev")[0];
+
+      next.addEventListener("click", (e) => {
+        carousel.scrollBy(width + gap, 0);
+        if (carousel.scrollWidth !== 0) {
+          prev.style.display = "flex";
+        }
+        if (content.scrollWidth - width - gap <= carousel.scrollLeft + width) {
+          next.style.display = "none";
+        }
+      });
+      prev.addEventListener("click", (e) => {
+        carousel.scrollBy(-(width + gap), 0);
+        if (carousel.scrollLeft - width - gap <= 0) {
+          prev.style.display = "none";
+        }
+        if (!content.scrollWidth - width - gap <= carousel.scrollLeft + width) {
+          next.style.display = "flex";
+        }
+      });
+
+      let width = carousel.offsetWidth;
+      console.log("aa", "width");
+      window.addEventListener("resize", (e) => (width = carousel.offsetWidth));
+    </script>
+    <script>  
+        const element = document.querySelector(".carousel");
+        element.addEventListener('wheel', (event) => {
+        event.preventDefault();
+        element.scrollBy({
+        left: event.deltaY < 0 ? -500 : 500,    
+        });
+      });
+      </script>
+      <script>
+        const el=document.getElementsByClassName("carousel")[0];
+        const prevbtn=document.getElementsByClassName("prev")[0],
+              nextbtn=document.getElementsByClassName("next")[0];
+        prevbtn.addEventListener("mouseover", function handleMouseOver(){
+            prevbtn.style.visibility = 'visible';
+            nextbtn.style.visibility = 'visible';
+        });
+        nextbtn.addEventListener("mouseover", function handleMouseOver(){
+            prevbtn.style.visibility = 'visible';
+            nextbtn.style.visibility = 'visible';
+        });
+        el.addEventListener("mouseover", function handleMouseOver(){
+            prevbtn.style.visibility = 'visible';
+            nextbtn.style.visibility = 'visible';
+        });
+        el.addEventListener("mouseout", function handleMouseOut(){
+            prevbtn.style.visibility = 'hidden';
+            nextbtn.style.visibility = 'hidden';
+        });
+       
+      </script>
+  </body>
+</html>
